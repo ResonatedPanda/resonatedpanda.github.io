@@ -4,7 +4,7 @@ import remarkFootnotes from 'remark-footnotes';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://synthasmagoria.github.io',
+  site: 'https://resonatedpanda.github.io',
   markdown: {
     remarkPlugins: [[remarkFootnotes, { inlineNotes: true }]],
   },
