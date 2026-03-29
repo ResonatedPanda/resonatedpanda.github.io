@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact">
+  <div class="contact">
+    <h1>Contact</h1>
+    <p>Get in touch.</p>
+
+    <form class="contact-form" name="contact" method="POST" data-netlify="true">
+      <label>
+        Name
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" required />
+      </label>
+      <label>
+        Message
+        <textarea name="message" rows="6" required></textarea>
+      </label>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</Layout>
+
+<style>
+  .contact {
+    max-width: 540px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact > p {
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+
+  input,
+  textarea {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--text);
+    padding: 0.4rem 0;
+    outline: none;
+    color: var(--text);
+    width: 100%;
+    resize: vertical;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-bottom-color: var(--accent);
+  }
+
+  button {
+    align-self: flex-start;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    padding: 0.7rem 2rem;
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  button:hover {
+    opacity: 0.75;
+  }
+</style>

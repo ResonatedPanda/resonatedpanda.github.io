@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About">
+  <div class="about">
+    <h1>About</h1>
+    <div class="prose">
+      <p>
+        Hi, I'm Daniel Tsvetanov. Write something about yourself here.
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .about {
+    max-width: 680px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .prose p {
+    margin-bottom: 1.2em;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+</style>

@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const galleries = (await getCollection('galleries')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout>
+  <section class="intro">
+    <p>Photography, writing, and other things.</p>
+  </section>
+
+  {galleries.length > 0 && (
+    <section class="recent">
+      <h2>Recent</h2>
+      <ul class="gallery-list">
+        {galleries.slice(0, 6).map((g) => (
+          <li>
+            <a href={`/galleries/${g.id}`}>
+              {g.data.cover && (
+                <div class="thumb">
+                  <img src={g.data.cover} alt={g.data.title} />
+                </div>
+              )}
+              <div class="meta">
+                <span class="title">{g.data.title}</span>
+                <span class="date">{g.data.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })}</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Layout>
+
+<style>
+  .intro {
+    margin-bottom: 4rem;
+    font-size: 1.4rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .recent h2 {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .gallery-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .gallery-list a {
+    text-decoration: none;
+    display: block;
+  }
+
+  .thumb {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #e5e3de;
+    margin-bottom: 0.75rem;
+  }
+
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-list a:hover .thumb img {
+    transform: scale(1.02);
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .date {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+</style>

@@ -1,0 +1,135 @@
+---
+interface Props {
+    title?: string;
+}
+const { title } = Astro.props;
+const pageTitle = title ? `${title} — Daniel Tsvetanov` : "Daniel Tsvetanov";
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{pageTitle}</title>
+    </head>
+    <body>
+        <header>
+            <a href="/" class="site-name">Daniel Tsvetanov</a>
+            <nav>
+                <a href="/galleries">work</a>
+                <a href="/about">about</a>
+                <a href="/contact">contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <slot />
+        </main>
+
+        <footer>
+            <p>© {new Date().getFullYear()} Daniel Tsvetanov</p>
+        </footer>
+    </body>
+</html>
+
+<style is:global>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    :root {
+        --bg: #ffffff;
+        --text: #1a1a1a;
+        --muted: #888;
+        --accent: #c0392b;
+        --font-body: "Georgia", serif;
+        --font-ui: system-ui, sans-serif;
+    }
+
+    html {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        padding: 2rem 0 1.5rem;
+        border-bottom: 1px solid var(--text);
+        margin-bottom: 3rem;
+    }
+
+    .site-name {
+        font-family: var(--font-ui);
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        color: var(--text);
+    }
+
+    nav {
+        display: flex;
+        gap: 2rem;
+        font-family: var(--font-ui);
+        font-size: 0.9rem;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+    }
+
+    nav a:hover {
+        color: var(--text);
+    }
+
+    main {
+        flex: 1;
+    }
+
+    footer {
+        padding: 2rem 0;
+        margin-top: 4rem;
+        border-top: 1px solid #ddd;
+        font-family: var(--font-ui);
+        font-size: 0.8rem;
+        color: var(--muted);
+    }
+
+    a {
+        color: inherit;
+    }
+
+    img {
+        max-width: 100%;
+        display: block;
+    }
+
+    h1,
+    h2,
+    h3 {
+        line-height: 1.2;
+        font-weight: normal;
+    }
+</style>
